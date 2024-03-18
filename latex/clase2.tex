@@ -1,0 +1,74 @@
+\documentclass[11pt]{article}
+%justify text
+\usepackage{ragged2e}
+%set page margin size
+\usepackage[left=1.5cm, right=1.5cm, top=1.5cm]{geometry}
+
+\usepackage[spanish]{babel}
+
+\input{commands/notescommands.tex}
+
+\begin{document}
+
+%\lecturetitle{1}
+\title{Estructuras de Datos y Algoritmos: Notación Asintótica}
+\date{}
+\author{Yerko Ortiz}
+
+\maketitle
+\flushleft
+\justifying
+\lectureobjective{
+    El objetivo de la segunda clase es estudiar una serie de funciones matemáticas bien conocidas y definir la notación Big-oh, Theta y Omega.
+}
+
+\tableofcontents
+
+\lecturesection{Introducción}
+Para poder medir la eficiencia de un algoritmo y así mismo poder comparar qué algoritmo podría ser mejor para un determinado problema, 
+es necesario tener un método que describa la eficiencia del algoritmo en términos del tamaño de entrada del problema.
+
+\lecturesection{Notación Asintótica}
+La notación asintótica describe el comportamiento de una función matemática. En el contexto del curso, la notación asintótica caracteriza el tiempo de ejecución o espacio de memoria de un algoritmo mediante una función matemática. 
+
+Las ventajas de describir la eficiencia de un algoritmo con notación asintótica son:
+\begin{itemize}
+    \item Describe la eficiencia en función de un tamaño variable de entrada.
+    \item Caracteriza el uso de recursos del algoritmo mediante una función matemática sin constantes ni términos de menor orden.
+    \item Es independiente de las especificaciones de la maquina que ejecuta el algoritmo.
+\end{itemize}
+\newpage
+\lecturesection{Crecimiento de funciones}
+Puesto que el tamaño de entrada un algoritmo es arbitrario, el tiempo de ejecución o espacio de memoria de un 
+algoritmo puede ser caracterizado mediante una función matemática que considere el tamaño de entrada.
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|}
+    \hline
+        Input & Constante & Logaritmo & Lineal & Linearítmica & Cuadrática \\ \hline
+        $f(N)$ & $1$ & $lgN$ & $N$ & $NlgN$ & $N^2$ \\ \hline
+        f(1000) & 1 & 10 & 1000 & 10000 & 1000000 \\ \hline
+        Tiempo & 1 ns & 10 ns & 1 $\mu$ s & 10 $\mu$ s & 1 ms \\ \hline
+        Memoria & 1 B & 10 B & 1KB & 10KB & 10MB \\ \hline
+    \end{tabular}
+\end{table}
+
+\lecturesection{Notación Big O}
+$\mathcal{O}(g(N))$ = $\{ f(N):$ existen constantes positivas $c$ y $N_0$ de forma que $0 \leq f(N) \leq cg(N)$, para todo $N \ge N_0 \}$
+\begin{itemize}
+    \item Big O caracteriza el peor caso de un algoritmo.
+\end{itemize}
+\lecturesection{Notación Theta}
+$\Theta(g(N))$ = $\{ f(N):$ existen constantes positivas $c_1$, $c_2$ y $N_0$ de forma que $0 \leq c_{1}g(N)\leq f(N) \leq c_{2}g(N)$, para todo $N \ge N_0 \}$
+\begin{itemize}
+    \item Theta caracteriza el caso promedio de un algoritmo.
+\end{itemize}
+\lecturesection{Notación Omega}
+$\Omega(g(N))$ = $\{ f(N):$ existen constantes positivas $c$ y $N_0$ de forma que $0 \leq cg(N) \leq f(N)$, para todo $N \ge N_0 \}$
+\begin{itemize}
+    \item Omega caracteriza el mejor caso de un algoritmo.
+\end{itemize}
+
+
+\end{document}

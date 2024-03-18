@@ -1,5 +1,8 @@
 clean:
-	rm -f ./latex/*.log ./latex/*.pdf ./latex/*.fdb_latexmk ./latex/*.aux ./latex/*.fls ./latex/*.gz ./latex/*.toc
+	rm -f *.log *.pdf *.fdb_latexmk *.aux *.fls *.gz *.toc
 
 compile:
 	pdflatex ./latex/*.tex -output-directory .
+
+move_note:
+	mv clase$(LECTURE_NUMBER).pdf ../catedras/clase$(LECTURE_NUMBER)

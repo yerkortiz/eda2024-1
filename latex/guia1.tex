@@ -1,0 +1,223 @@
+\documentclass[12pt]{article}
+%justify text
+\usepackage{ragged2e}
+%set page margin size
+\usepackage[left=1.5cm, right=2cm]{geometry}
+
+\usepackage[spanish]{babel}
+
+\input{commands/notescommands.tex}
+\input{commands/problemcommands.tex}
+\input{commands/listings.tex}
+
+\begin{document}
+%\lecturetitle{1}
+\title{Estructuras de Datos y Algoritmos: Guía 1}
+\author{Yerko Ortiz}
+\date{}
+
+\maketitle
+\flushleft
+\justifying
+
+\problemsection{Problemas de desarrollo}
+Resuelva los siguientes problemas diseñando un algoritmo en papel. Pruebe su correctitud y describa el tiempo de ejecución en términos de $\mathcal{O}(f(n))$.
+\flushleft
+1. \subproblem{Invertir un entero}
+\newline
+Dado un número entero N, diseñe un algoritmo que invierta sus digitos. 
+\newline
+
+\textbf{Ejemplo 1} \newline
+Input: N = 2674
+\newline
+Output: 4762 
+\newline
+
+2. \subproblem{Arreglo circular}
+\newline 
+Dado un arreglo A de números enteros, con tamaño N. Diseñe un algoritmo que rota el arreglo a la izquierda r posiciones. 
+\newline
+\newline
+\textbf{Ejemplo 1} 
+\newline 
+Input: \\ $N = 4$ \\ $A = \{ 5, 7, 8, 9 \}$ \\ r = 1 \\ 
+Output: $\{7, 8, 9, 5 \}$
+\newline
+\newline
+\textbf{Ejemplo 2} 
+\newline 
+Input: \\ $N = 4$ \\ $A = \{ 5, 7, 8, 9 \}$ \\ r = 0 \\ 
+Output: $\{5, 7, 8, 9\}$
+
+
+3. \subproblem{Arreglo incremental}
+\newline 
+Dado un arreglo de N enteros, se le pide modificar el arreglo de forma que sea incremental, es decir que cada elemento en la secuencia sea igual o mayor que el elemento previo.
+Para realizar esta modificación en cada movimiento la única operación disponible es incrementar el valor de un elemento cualquiera en el arreglo en 1. Diseñe un algoritmo que retorne la cantidad mínima de modificaciones.
+\newline
+\newline
+\textbf{Ejemplo}\\
+Input: \\ N = 5 \\ A = $\{ 2, 4, 3, 5\}$ \\ 
+Output: 2
+\newline
+4. \subproblem{Todos los pares de un arreglo}
+\newline 
+Sea un arreglo de N enteros diseñe un algoritmo que retorne una matriz de N filas y 2 columnas dimensiones que contenga cada par posible en el arreglo. 
+\newline
+\textbf{Ejemplo}
+\newline
+Input: \\$N = 3$ \\ A = $\{ 1, 2, 3\}$
+\newline
+Output: \\ 
+$\{$ $\{ 1, 1\}$, $\{1, 2 \}$ $\{ 1, 3\}$, \\  $\{ 2, 1\}$, $\{ 2, 2\}$, $\{ 2, 3\}$, \\ $\{ 3, 1\}$, $\{ 3, 2\}$, $\{ 3, 3\}$ $\}$ 
+
+5. \subproblem{Multiplicación de matrices}
+\newline
+Sean dos matrices $M_{1}$ y $M_{2}$, ambas matrices de N files y N columnas. Diseñe un algoritmo que reciba dos matrices de enteros como entrada y retorne la matriz resultante al multiplicar ambas matrices.
+\newline 
+\textbf{Ejemplo}
+Input: \\ N = 2 \\ $M_1$ = $ \{ \{ 2, 2\} $, $\{ 3, 3\} \}$ \\ $M_2$ = $ \{ \{ 5, 5\} $, $\{ 10, 10\} \}$ 
+\newline 
+Output: $\{ \{ 30, 30\}, \{ 45, 45\} \}$
+\newpage
+\problemsection{Notación asintótica}
+Caracterize cada uno de los siguientes tiempos de ejecución en función de $\mathcal{O}(f(N))$.
+\newline
+1. $T(N) = 5N^2 + 8N + 7$
+\newline\hspace{0.5cm}
+
+2. $T(N) = 24$
+\newline\hspace{0.5cm}
+
+3. $T(N) = \sqrt{N} + \log_2 N$
+\newline\hspace{0.5cm}
+
+4. $T(N, K) = N \log_2 N + N ^ K$
+\newline\hspace{0.5cm}
+
+5. $T(N, K) = \log_2 N + N ^ K,  \forall K \geq 1$
+\newline\hspace{0.5cm}
+
+6.$T(N) = N \log_2 N + N \log_2 \log_2 N$
+\newline\hspace{0.5cm}
+
+7.$T(N, M) = 8 N^3 + 5 M^23 + N^2 + 1$
+\newpage
+\problemsection{Análisis de algoritmos}
+Para cada uno de los siguientes métodos en Java:
+\begin{itemize}
+    \item Describa el problema que resuelven en términos de Input/Output.
+    \item Caracterize el tiempo de ejecución utilizando notación $\mathcal{O}(f(n))$.
+    \item Calcule el output resultante para los casos de prueba.
+\end{itemize}
+\subproblem{1.}
+\begin{lstlisting}[language=Java]
+    public static String binary(int N) {
+        if (N == 0) return "0";
+        int lgn = (int) (Math.log(N) / Math.log(2));
+        char[] bits = new char[lgn + 1];
+        do {
+            bits[lgn--] = (char) (N % 2 + '0');
+            N /= 2;
+        } while(N > 0);
+
+        return String.valueOf(bits);
+    }
+\end{lstlisting}
+Casos de prueba:
+\begin{itemize}
+    \item Input: $N = 5$
+    \item Input: $N = 82$
+    \item Input: $N = 25$
+\end{itemize}
+
+\subproblem{2.}
+\begin{lstlisting}[language=Java]
+    public static int euclid(int a, int b) {
+        int r;
+        while (b > 0) {
+            r = a % b;
+            a = b;
+            b = r;
+        }
+        return a;
+    }
+\end{lstlisting}
+Casos de prueba:
+\begin{itemize}
+    \item Input: $a = 8, b = 4$
+    \item Input: $a = 9, b = 5$
+    \item Input: $a = 1232, b = 4$
+\end{itemize}
+
+\subproblem{3.}
+\begin{lstlisting}[language=Java]
+    public static boolean[] erathostenes(int N) {
+        boolean[] is_prime = new boolean[N + 1];
+        Arrays.fill(is_prime, true);
+        is_prime[0] = is_prime[1] = false;
+
+        for (int i = 2; i <= N; i++) {
+            if (is_prime[i] && i * i <= N) {
+                for (int j = i * i; j <= N; j += i) {
+                    is_prime[j] = false;
+                }
+            }
+        }
+
+        return is_prime;
+    }
+\end{lstlisting}
+Casos de prueba:
+\begin{itemize}
+    \item Input: $N = 10$
+    \item Input: $N = 32$
+\end{itemize}
+
+\subproblem{4.}
+\begin{lstlisting}[language=Java]
+    public static int f1(int N) {
+        return (N*N + N) / 2;
+    }
+\end{lstlisting}
+Casos de prueba:
+\begin{itemize}
+    \item Input: $N = 5$
+    \item Input: $N = 500$
+\end{itemize}
+\newpage
+\subproblem{5.}
+\begin{lstlisting}[language=Java]
+    public static int f2(int N) {
+        int s = 0;
+        for(int i = 0; i <= N; i++)
+            s += i;
+        return s;
+    }
+\end{lstlisting}
+Casos de prueba:
+\begin{itemize}
+    \item Input: $N = 7$
+    \item Input: $N = 9$
+\end{itemize}
+
+\subproblem{6.}
+\begin{lstlisting}[language=Java]
+    public static int f3(int N) {
+        int s = 0;
+        for (int i = 0; i <= N; i++) {
+            for (int j = 0; j < i; j++) {
+                s++;
+            }
+        }
+        return s;
+    }
+\end{lstlisting}
+Casos de prueba:
+\begin{itemize}
+    \item Input: $N = 3$
+    \item Input: $N = 6$
+\end{itemize}
+
+\end{document}

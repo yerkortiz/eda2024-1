@@ -1,4 +1,4 @@
-package snippets;
+package binary;
 public class Binary {
     public static String DecBin(int N) {
         // division by zero is undefined for log2 calculation

@@ -1,0 +1,70 @@
+\documentclass{exam}
+%assign letters or other incrementing expressions to enumerate
+\usepackage[shortlabels]{enumitem}
+
+\firstpageheader{
+    Control 1: Análisis asintótico \\
+    Profesor Yerko Ortiz \\ 
+    Tiempo: 45 minutos
+    }{}
+    {Nombre: \underline{\hspace{2.5in}} }
+
+\input{commands/listings.tex}
+\begin{document}
+\section{Teoría}
+\subsection{Tiempo de ejecución}
+Caracterice el tiempo de ejecución de las siguientes expresiones utilizando notación $\mathcal{O}(f(n))$. [5 puntos cada respuesta correcta]
+\begin{enumerate}[a.]
+    \item $T(N) = N^2 + N\sqrt{N} + 5$
+    \vspace{1cm}
+    \item $T(N, K) = N \log N + N ^ K$
+    \vspace{1cm}
+    \item $T(N) = \sqrt{N} + \log N$
+    \vspace{1cm}
+    \item $T(N, M) = 5N^4 + 2N^2 + M + 1$
+    \vspace{1cm}
+\end{enumerate}
+\subsection{Verdadero y falso}
+Para cada una de las siguientes afirmaciones, denote su veracidad con la letra V o su falsedad con la letra F. Para las respuestas falsas justifique su respuesta. [5 puntos cada respuesta correcta]
+\begin{enumerate}[a.]
+    \item \underline{\hspace{0.7cm}} La notación $\Omega(f(n))$ es utilizada para caracterizar el caso promedio de ejecución de un algoritmo.
+    \vspace{1cm}
+    \item \underline{\hspace{0.7cm}} Una ventaja del análisis asintótico es que es dependiente de las características de la maquina en la que el algoritmo es ejecutado, es decir, según la velocidad de la cpu y cantidad de memoria el resultado del análisis será distinto.
+    \vspace{1cm}
+    \item \underline{\hspace{0.7cm}} La eficiencia de un algoritmo caracteriza el uso de algún recurso computacional(cpu, memoria) respecto el tamaño de entrada del algoritmo.
+    \vspace{1cm}
+    \item \underline{\hspace{0.7cm}} El siguiente algoritmo calcula el logaritmo base dos de un número entero N:
+        \begin{lstlisting}[language=java]
+        static int f(int n) {
+            int l = -1;
+            while(n >  0) {
+                l++;
+                n = n/10;
+            }
+            return l;
+        }
+        \end{lstlisting}
+\end{enumerate}
+
+\newpage 
+\section{Análisis}
+Para el siguiente algoritmo[5 puntos cada respuesta correcta]:
+\begin{enumerate}[a.]
+    \item Describa el algoritmo en términos de entrada/salida, es decir las propiedades que definen al conjunto de entrada(tipo de datos), como también las propiedades y restricciones que permiten validar si un valor de salida es correcto o no.
+    \item Calcule la salida del algoritmo si la entrada es: $\{ n = 2\}$
+    \item Calcule la salida del algoritmo si la entrada es: $\{ n = 5\}$
+    \item Describa el tiempo de ejecución utilizando notación $\mathcal{O}(f(n))$
+\end{enumerate}
+\begin{lstlisting}[language=java]
+static int f(int n) {
+    int s = 0;
+    for (int i = 1; i <= n*n; i++) {
+        for (int j = 1; j <= i; j++) {
+            s++;
+        }
+    }
+    return s;
+}
+\end{lstlisting}
+
+\end{document}
